@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/lightGray">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="159dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/h_image"
+                    android:paddingHorizontal="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    card_view:srcCompat="@mipmap/ic_launcher" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="434dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/h_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="홍길동" />
+
+                    <TextView
+                        android:id="@+id/h_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="나이: 65세"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/h_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="위치: B 병동 2020번 침상"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/h_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="세부사항:  약 복용"
+                        android:textSize="10dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

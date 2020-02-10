@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorBlack">#000</color>
+    <color name="lightGray">#C0C0C0</color>
+    <color name="skyblue">#00bfff</color>
+    <color name="lightBlue">#52B2BF</color>
+    <color name="stonecolor">#59788e</color>
+    <color name="Sprucecolor">#2c3e4c</color>
+    <color name="slateColor">#757c88</color>
+
+
+
+
+
+</resources>
