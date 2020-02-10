@@ -3,10 +3,10 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardviewid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/lightGray">
