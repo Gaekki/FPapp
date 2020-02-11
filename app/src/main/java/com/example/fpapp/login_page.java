@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class login_page extends AppCompatActivity {
+public class login_page extends MainActivity {
 
+    public boolean checkLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,15 +17,16 @@ public class login_page extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-
 
             }
         });
 
 
+
     }
+
 }
