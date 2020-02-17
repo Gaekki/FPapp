@@ -3,6 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/cardview">
+    >
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/Sprucecolor"
+        android:gravity="center"
+        android:text="환자 리스트"
+        android:textColor="#fff" />
+
+    <include
+        layout="@layout/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="139dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/names_list"
+        android:layout_width="match_parent"
+        android:layout_height="344dp" />
+
+
+
 
     </LinearLayout>
