@@ -37,8 +37,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 
-public class MainActivity extends AppCompatActivity {
 
+
+
+public class MainActivity extends AppCompatActivity {
     BufferedReader socket_in;
     PrintWriter socket_out;
     private Socket socket;
@@ -62,12 +64,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // 노티피케이션 기본 설정
+    private void createNotification() {
+        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, 0,
+                new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("낙상 사고 위험 감지")
+                .setContentText("홍길동\t103호")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("홍길동\t103호"))
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setContentIntent(mPendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
+
+    }
+
+    // 알림 채널 생성하기
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library.
+        // API 26 이상에서는 기존에 있던 라이브러리에 없어서 따로 채널을 생성해야함
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        output=(TextView) findViewById(R.id.textv2);
+        output = (TextView) findViewById(R.id.textv2);
         Thread worker = new Thread() {
             public void run() {
                 try {
@@ -85,21 +126,15 @@ public class MainActivity extends AppCompatActivity {
                         output.post(new Runnable() {
                             public void run() {
                                 output.setText(data); //data에 저장된 메세지를 output 텍스트뷰로 날림
-
                             }
                         });
-
                     }
 
                 } catch (Exception e) {
-
                 }
-
             }
-
         };
         worker.start();
-
 
         // 화면 하단부분의 메뉴 버튼 설정
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
@@ -138,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Button btnPass = findViewById(R.id.btnPass);
         Button btnAccept = findViewById(R.id.btnAccept);
 
@@ -154,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         // 알림 버튼 설정
         btnNoti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,44 +197,12 @@ public class MainActivity extends AppCompatActivity {
                 createNotification();
             }
         });
-    }
 
-    // 노티피케이션 기본 설정
-    private void createNotification() {
-        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, 0,
-                new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("낙상 사고 위험 감지")
-                .setContentText("홍길동\t103호")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("홍길동\t103호"))
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setContentIntent(mPendingIntent);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, builder.build());
 
     }
 
-    // 알림 채널 생성하기
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library.
-        // API 26 이상에서는 기존에 있던 라이브러리에 없어서 따로 채널을 생성해야함
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
+
+
 }
 
 
